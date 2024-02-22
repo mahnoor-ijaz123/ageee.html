@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Calculator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: lightgray;
+      text-align: center;
+      margin: 50px;
+    }
+
+    h2 {
+      color: blue;
+    }
+
+    label {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    input {
+      padding: 5px;
+      font-size: 14px;
+      background-color: antiquewhite;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: rgb(8, 129, 177);
+      color: white;
+      border-radius: none;
+    }
+
+    button:hover {
+      background-color: rgb(30, 30, 248);
+    }
+
+    #result {
+      font-size: 18px;
+      color: black;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Date Calculator</h2>
+
+  <label for="birthDate">ENTER YOUR BIRTHDATE:</label>
+  <input type="date" id="birthDate">
+
+  <button onclick="calculateAge()">Calculate Age</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculateAge() {
+      const birthDateInput = document.getElementById('birthDate').value;
+      const birthDate = new Date(birthDateInput);
+      const currentDate = new Date();
+
+      const ageInMilliseconds = currentDate - birthDate;
+      const ageInSeconds = ageInMilliseconds / 1000;
+      const ageInMinutes = ageInSeconds / 60;
+      const ageInHours = ageInMinutes / 60;
+      const ageInDays = ageInHours / 24;
+
+      const years = Math.floor(ageInDays / 365);
+      const remainingDays = Math.floor(ageInDays % 365);
+      const months = Math.floor(remainingDays / 30);
+      const days = remainingDays % 30;
+
+      let result = '';
+
+      if (years > 0) {
+        result += years + (years > 1 ? ' years ' : ' year ');
+      }
+
+      if (months > 0) {
+        result += months + (months > 1 ? ' months ' : ' month ');
+      }
+
+      if (days > 0) {
+        result += days + (days > 1 ? ' days' : ' day');
+      }
+
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+
+</body>
+</html>
